@@ -100,12 +100,20 @@ public class BeeDeeBotAuto extends LinearOpMode {
         /*
         to go 85cm, 85/35.5 = 2.394
         */
+        
+        // STARTING FROM LEFT SQUARE
         driveForward(70.0);
         driveBackwards(30.0);
         turnRight(TIME_PER_1_TURN, 0.25);
         driveForward(70.0);
         turnLeft(TIME_PER_1_TURN, 0.25);
         driveForward(25.0);
+        driveBackwards(35.0);
+        turnLeft(TIME_PER_1_TURN, 0.35);
+        driveForward(70.0);
+        turnRight(/*face right*/TIME_PER_1_TURN, 0.5);
+        driveForward(25.0);
+        
 
         // turns 360 + 120deg in 4 sec. 
         /*

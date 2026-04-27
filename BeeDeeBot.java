@@ -99,11 +99,13 @@ public class BeeDeeBot extends LinearOpMode {
             leftPower    = Range.clip(drive + turn, -1.0, 1.0);
             rightPower   = Range.clip(drive - turn, -1.0, 1.0);
             
-            if (gamepad1.left_bumper == true){
-                handwave.setPosition(0.0);      
+            if (gamepad1.left_bumper && (handwave.getPosition() + 0.1 < 1.0)){
+                handwave.setPosition(handwave.getPosition() + 0.1);
+                sleep(50);
             }
-            if (gamepad1.right_bumper == true){
-                handwave.setPosition(1.0);
+            if (gamepad1.right_bumper && (handwave.getPosition() - 0.1 > 0.0)){
+                handwave.setPosition(handwave.getPosition() - 0.1);
+                sleep(50);
                 
             }
             // Tank Mode uses one stick to control each wheel.

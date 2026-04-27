@@ -56,9 +56,9 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Robot: Auto Drive By Time", group="Robot")
+@Autonomous(name="Robot: Auto Drive By Time, ALEX", group="Robot")
 
-public class BeeDeeBotAuto extends LinearOpMode {
+public class BeeDeeBotAutoOTHER extends LinearOpMode {
 
     /* Declare OpMode members. */
     private DcMotor leftDrive = null;
@@ -71,7 +71,8 @@ public class BeeDeeBotAuto extends LinearOpMode {
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
     static final int        TIME_PER_1_TURN = 3000;
-    static final double      DISTANCE_IN_1_SEC = 35.5;
+    static final double     DISTANCE_IN_1_SEC = 35.5;
+    static int              instructionCount = 1;
 
     @Override
     public void runOpMode() {
@@ -95,62 +96,32 @@ public class BeeDeeBotAuto extends LinearOpMode {
         waitForStart();
         
         // STARTING FROM LEFT SQUARE
-        telemetry.addLine("Instruction 1");
-        telemetry.update();
-        driveForward(70.0);
-        
-        telemetry.addLine("Instruction 2");
-        telemetry.update();
-        driveBackwards(30.0);
-        
-        telemetry.addLine("Instruction 3");
-        telemetry.update();
-        turnRight(TIME_PER_1_TURN, 0.25);
-        
-        telemetry.addLine("Instruction 4");
-        telemetry.update();
-        driveForward(70.0);
-        
-        telemetry.addLine("Instruction 5");
-        telemetry.update();
-        turnLeft(TIME_PER_1_TURN, 0.25);
-        
-        telemetry.addLine("Instruction 6");
-        telemetry.update();
-        driveForward(25.0);
-        
-        telemetry.addLine("Instruction 7");
-        telemetry.update();
-        driveBackwards(35.0);
-        
-        telemetry.addLine("Instruction 8");
-        telemetry.update();
-        turnLeft(TIME_PER_1_TURN, 0.35);
-        
-        telemetry.addLine("Instruction 9");
-        telemetry.update();
-        driveForward(70.0);
-        
-        telemetry.addLine("Instruction 10");
-        telemetry.update();
-        turnRight(TIME_PER_1_TURN, 0.5);
-        
-        telemetry.addLine("Instruction 11");
-        telemetry.update();
-        driveForward(25.0);
+        df(22.0d);
+        tr(TIME_PER_1_TURN, 0.281d);
+        df(135.0d);
+        tl(TIME_PER_1_TURN, 0.527d);
+        df(210.0d);
         
         telemetry.addLine("Done with instructions!");
         telemetry.update();
     }
     
-    private void driveForward(int time) { // Time in milliseconds
+    private void dft(int time) { // Time in milliseconds
+        telemetry.addLine("Instruction: " + instructionCount);
+        telemetry.update();
+        instructionCount++;
+        
         leftDrive.setPower(FORWARD_SPEED);  
         rightDrive.setPower(FORWARD_SPEED); 
         sleep(time);
         leftDrive.setPower (0.0);  
         rightDrive.setPower (0.0); 
     }
-    private void driveForward(double distance) { // distance in cm
+    private void df(double distance) { // distance in cm
+        telemetry.addLine("Instruction: " + instructionCount);
+        telemetry.update();
+        instructionCount++;
+        
         leftDrive.setPower(FORWARD_SPEED);  
         rightDrive.setPower(FORWARD_SPEED); 
         sleep( (int) ((distance / DISTANCE_IN_1_SEC) * 1000));
@@ -158,14 +129,22 @@ public class BeeDeeBotAuto extends LinearOpMode {
         rightDrive.setPower (0.0); 
     }
     
-    private void driveBackwards(int time) { // Time in milliseconds
+    private void dbt(int time) { // Time in milliseconds
+        telemetry.addLine("Instruction: " + instructionCount);
+        telemetry.update();
+        instructionCount++;
+        
         leftDrive.setPower (-FORWARD_SPEED);  
         rightDrive.setPower (-FORWARD_SPEED); 
         sleep(time);
         leftDrive.setPower (0.0);  
         rightDrive.setPower (0.0); 
     }
-    private void driveBackwards(double distance) { // distance in cm
+    private void db(double distance) { // distance in cm
+        telemetry.addLine("Instruction: " + instructionCount);
+        telemetry.update();
+        instructionCount++;
+        
         leftDrive.setPower(-FORWARD_SPEED);  
         rightDrive.setPower(-FORWARD_SPEED); 
         sleep( (int) ((distance / DISTANCE_IN_1_SEC) * 1000));
@@ -173,14 +152,22 @@ public class BeeDeeBotAuto extends LinearOpMode {
         rightDrive.setPower (0.0); 
     }
     
-    private void turnLeft(int time) { // Time in milliseconds
+    private void tlt(int time) { // Time in milliseconds
+        telemetry.addLine("Instruction: " + instructionCount);
+        telemetry.update();
+        instructionCount++;
+        
         leftDrive.setPower (-TURN_SPEED);  
         rightDrive.setPower (TURN_SPEED); 
         sleep(time);
         leftDrive.setPower (0.0);  
         rightDrive.setPower (0.0); 
     }
-    private void turnLeft(int time, double turns) { // Time in milliseconds
+    private void tl(int time, double turns) { // Time in milliseconds
+        telemetry.addLine("Instruction: " + instructionCount);
+        telemetry.update();
+        instructionCount++;
+        
         leftDrive.setPower (-TURN_SPEED);  
         rightDrive.setPower (TURN_SPEED); 
         sleep( (int) ((time * turns) + (turns > 1 ? turns : 0 * 200)));
@@ -188,14 +175,22 @@ public class BeeDeeBotAuto extends LinearOpMode {
         rightDrive.setPower (0.0); 
     }
     
-    private void turnRight(int time) { // Time in milliseconds
+    private void trt(int time) { // Time in milliseconds
+        telemetry.addLine("Instruction: " + instructionCount);
+        telemetry.update();
+        instructionCount++;
+        
         leftDrive.setPower (TURN_SPEED);  
         rightDrive.setPower (-TURN_SPEED); 
         sleep(time);
         leftDrive.setPower (0.0);  
         rightDrive.setPower (0.0);
     }
-    private void turnRight(int time, double turns) { // Time in milliseconds
+    private void tr(int time, double turns) { // Time in milliseconds
+        telemetry.addLine("Instruction: " + instructionCount);
+        telemetry.update();
+        instructionCount++;
+        
         leftDrive.setPower (TURN_SPEED);  
         rightDrive.setPower (-TURN_SPEED); 
         sleep( (int) ((time * turns) + (turns > 1 ? turns : 0 * 200)));

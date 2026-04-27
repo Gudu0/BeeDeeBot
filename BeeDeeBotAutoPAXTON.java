@@ -56,9 +56,9 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Robot: Auto Drive By Time", group="Robot")
+@Autonomous(name="Robot: Auto Drive By Time, PAXTON", group="Robot")
 
-public class BeeDeeBotAuto extends LinearOpMode {
+public class BeeDeeBotAutoPAXTON extends LinearOpMode {
 
     /* Declare OpMode members. */
     private DcMotor leftDrive = null;
@@ -71,7 +71,8 @@ public class BeeDeeBotAuto extends LinearOpMode {
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
     static final int        TIME_PER_1_TURN = 3000;
-    static final double      DISTANCE_IN_1_SEC = 35.5;
+    static final double     DISTANCE_IN_1_SEC = 35.5;
+    static final int        AFTER_INSTRUCTION_SLEEP_TIME = 50;
 
     @Override
     public void runOpMode() {
@@ -139,6 +140,52 @@ public class BeeDeeBotAuto extends LinearOpMode {
         telemetry.update();
         driveForward(25.0);
         
+        // REVERSING
+        
+        telemetry.addLine("Instruction 12");
+        telemetry.update();
+        driveBackwards(25.0);
+        
+        telemetry.addLine("Instruction 13");
+        telemetry.update();
+        turnLeft(TIME_PER_1_TURN, 0.5);
+        
+        telemetry.addLine("Instruction 14");
+        telemetry.update();
+        driveBackwards(70.0);
+        
+        telemetry.addLine("Instruction 15");
+        telemetry.update();
+        turnRight(TIME_PER_1_TURN, 0.35);
+        
+        telemetry.addLine("Instruction 16");
+        telemetry.update();
+        driveForward(35.0);
+        
+        telemetry.addLine("Instruction 17");
+        telemetry.update();
+        driveBackwards(25.0);
+        
+        telemetry.addLine("Instruction 18");
+        telemetry.update();
+        turnRight(TIME_PER_1_TURN, 0.25);
+        
+        telemetry.addLine("Instruction 19");
+        telemetry.update();
+        driveBackwards(70.0);
+        
+        telemetry.addLine("Instruction 20");
+        telemetry.update();
+        turnLeft(TIME_PER_1_TURN, 0.25);
+        
+        telemetry.addLine("Instruction 21");
+        telemetry.update();
+        driveForward(30.0);
+        
+        telemetry.addLine("Instruction 22");
+        telemetry.update();
+        driveBackwards(70.0);
+        
         telemetry.addLine("Done with instructions!");
         telemetry.update();
     }
@@ -148,7 +195,8 @@ public class BeeDeeBotAuto extends LinearOpMode {
         rightDrive.setPower(FORWARD_SPEED); 
         sleep(time);
         leftDrive.setPower (0.0);  
-        rightDrive.setPower (0.0); 
+        rightDrive.setPower (0.0);
+        sleep(AFTER_INSTRUCTION_SLEEP_TIME);
     }
     private void driveForward(double distance) { // distance in cm
         leftDrive.setPower(FORWARD_SPEED);  
@@ -156,6 +204,7 @@ public class BeeDeeBotAuto extends LinearOpMode {
         sleep( (int) ((distance / DISTANCE_IN_1_SEC) * 1000));
         leftDrive.setPower (0.0);  
         rightDrive.setPower (0.0); 
+        sleep(AFTER_INSTRUCTION_SLEEP_TIME);
     }
     
     private void driveBackwards(int time) { // Time in milliseconds
@@ -164,6 +213,7 @@ public class BeeDeeBotAuto extends LinearOpMode {
         sleep(time);
         leftDrive.setPower (0.0);  
         rightDrive.setPower (0.0); 
+        sleep(AFTER_INSTRUCTION_SLEEP_TIME);
     }
     private void driveBackwards(double distance) { // distance in cm
         leftDrive.setPower(-FORWARD_SPEED);  
@@ -171,6 +221,7 @@ public class BeeDeeBotAuto extends LinearOpMode {
         sleep( (int) ((distance / DISTANCE_IN_1_SEC) * 1000));
         leftDrive.setPower (0.0);  
         rightDrive.setPower (0.0); 
+        sleep(AFTER_INSTRUCTION_SLEEP_TIME);
     }
     
     private void turnLeft(int time) { // Time in milliseconds
@@ -179,6 +230,7 @@ public class BeeDeeBotAuto extends LinearOpMode {
         sleep(time);
         leftDrive.setPower (0.0);  
         rightDrive.setPower (0.0); 
+        sleep(AFTER_INSTRUCTION_SLEEP_TIME);
     }
     private void turnLeft(int time, double turns) { // Time in milliseconds
         leftDrive.setPower (-TURN_SPEED);  
@@ -186,6 +238,7 @@ public class BeeDeeBotAuto extends LinearOpMode {
         sleep( (int) ((time * turns) + (turns > 1 ? turns : 0 * 200)));
         leftDrive.setPower (0.0);  
         rightDrive.setPower (0.0); 
+        sleep(AFTER_INSTRUCTION_SLEEP_TIME);
     }
     
     private void turnRight(int time) { // Time in milliseconds
@@ -194,6 +247,7 @@ public class BeeDeeBotAuto extends LinearOpMode {
         sleep(time);
         leftDrive.setPower (0.0);  
         rightDrive.setPower (0.0);
+        sleep(AFTER_INSTRUCTION_SLEEP_TIME);
     }
     private void turnRight(int time, double turns) { // Time in milliseconds
         leftDrive.setPower (TURN_SPEED);  
@@ -201,6 +255,7 @@ public class BeeDeeBotAuto extends LinearOpMode {
         sleep( (int) ((time * turns) + (turns > 1 ? turns : 0 * 200)));
         leftDrive.setPower (0.0);  
         rightDrive.setPower (0.0);
+        sleep(AFTER_INSTRUCTION_SLEEP_TIME);
     }
     
 }
